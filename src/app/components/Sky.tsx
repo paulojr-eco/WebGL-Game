@@ -1,17 +1,14 @@
-import { OrbitControls } from "@react-three/drei";
+import { OrbitControls } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
 
 const Sky = () => {
+  const camera = useThree((state) => state.camera);
+
   return (
     <>
       <OrbitControls />
       <ambientLight />
-      <directionalLight
-        position={[-5, 5, 5]}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
-      />
-      <color attach='background' args={['skyblue']} />
+      <color attach='background' args={['#00b5e2']} />
     </>
   );
 };
