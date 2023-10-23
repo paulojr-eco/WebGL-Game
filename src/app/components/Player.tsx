@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from 'react';
-import { useGLTF, useAnimations, OrbitControls } from '@react-three/drei';
+import {
+  useGLTF,
+  useAnimations,
+  OrbitControls,
+  useHelper,
+} from '@react-three/drei';
 import { useInput } from '../hooks/useInput';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { directionOffset } from '../utils/directions/directionOffset';
+import { RigidBody } from '@react-three/rapier';
 
 let walkDirection = new THREE.Vector3();
 let rotateAngle = new THREE.Vector3(0, 1, 0);
@@ -14,6 +20,9 @@ const Player = (props: any) => {
   const modelRef = useRef();
   const model = useGLTF('./models/Fox.gltf');
   const { actions } = useAnimations(model.animations, modelRef);
+
+  const dirLight = useRef<THREE.DirectionalLight>(null);
+  //useHelper(dirLight, THREE.DirectionalLightHelper, 1, 'red');
 
   const { forward, backward, left, right, jump, shift } = useInput();
 
@@ -29,6 +38,7 @@ const Player = (props: any) => {
     cameraTarget.y = model.scene.position.y + 2;
     cameraTarget.z = model.scene.position.z;
     if (controlsRef.current) {
+      console.log('Entrou aqui!');
       controlsRef.current.target = cameraTarget;
     }
   };
@@ -63,7 +73,10 @@ const Player = (props: any) => {
     if (
       currentAction.current === 'running' ||
       currentAction.current === 'walking' ||
-      currentAction.current === 'jumping'
+      (currentAction.current === 'jumping' &&
+        (forward || backward || left || right)) ||
+      (currentAction.current === 'walking' &&
+        (forward || backward || left || right))
     ) {
       let angleYCameraDirection = Math.atan2(
         camera.position.x - model.scene.position.x,
@@ -107,7 +120,20 @@ const Player = (props: any) => {
   return (
     <>
       <OrbitControls ref={controlsRef} />
-      <primitive object={model.scene} ref={modelRef} />
+      <directionalLight
+        position={[model.scene.position.x - 5, 10, model.scene.position.z + 5]}
+        castShadow
+        target={model.scene}
+        ref={dirLight}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+        color={'#be9bff'}
+      />
+      <RigidBody type='fixed'>
+        <mesh>
+          <primitive object={model.scene} ref={modelRef} />
+        </mesh>
+      </RigidBody>
     </>
   );
 };
