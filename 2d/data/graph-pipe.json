@@ -1,0 +1,70 @@
+{
+  "nodes": {
+    "a": {
+      "id": "a",
+      "format": "straight",
+      "offsetX": -200.00,
+      "offsetY": -98.00,
+      "rotation": 0
+    },
+    "b": {
+      "id": "b",
+      "format": "y",
+      "offsetX": 0.00,
+      "offsetY": -45.00,
+      "rotation": 0
+    },
+    "c": {
+      "id": "c",
+      "format": "l-flipped",
+      "offsetX": 0.00,
+      "offsetY": 155.00,
+      "rotation": 180
+    },
+    "d": {
+      "id": "d",
+      "format": "l-y",
+      "offsetX": 200.00,
+      "offsetY": 54.00,
+      "rotation": 0
+    }
+  },
+  "edges": {
+    "1": {
+      "id": "1",
+      "from": "a",
+      "to": "b",
+      "weight": 15.0,
+      "offsetX": -100.00,
+      "offsetY": -100.00,
+      "rotation": 0
+    },
+    "2": {
+      "id": "2",
+      "from": "b",
+      "to": "c",
+      "weight": 9.0,
+      "offsetX": 36.00,
+      "offsetY": 55.00,
+      "rotation": 90
+    },
+    "3": {
+      "id": "3",
+      "from": "b",
+      "to": "d",
+      "weight": 17.0,
+      "offsetX": 100.00,
+      "offsetY": -100.00,
+      "rotation": 0
+    },
+    "4": {
+      "id": "4",
+      "from": "c",
+      "to": "d",
+      "weight": 12.0,
+      "offsetX": 100.00,
+      "offsetY": 150.00,
+      "rotation": 0
+    }
+  }
+}
