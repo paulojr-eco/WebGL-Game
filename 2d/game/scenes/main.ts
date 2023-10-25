@@ -118,4 +118,8 @@ export class MainScene extends Scene {
       lever.setTexture('lever-on');
     }
   }
+
+  public getLevers() {
+    return this.levers;
+  }
 }

@@ -2,6 +2,8 @@ import { Types } from "phaser";
 import Phaser from "phaser";
 import { MainScene } from "./scenes";
 
+export const mainScene = new MainScene();
+
 const gameConfig: Types.Core.GameConfig = {
   width: "100%",
   height: "100%",
@@ -15,7 +17,7 @@ const gameConfig: Types.Core.GameConfig = {
     pixelArt: true,
     roundPixels: true
   },
-  scene: MainScene
+  scene: mainScene
 };
 
 export default gameConfig;

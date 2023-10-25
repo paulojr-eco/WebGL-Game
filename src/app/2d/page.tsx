@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 
 import { useGame } from '../../../2d/hooks';
 import gameConfig from '../../../2d/game';
-import convertToGraph from '../../../2d/game/utils/convertToGraph';
+import comparePaths from '../../../2d/game/utils/comparePaths';
 
 function Game2D() {
   const parentEl = useRef<HTMLDivElement>(null);
@@ -16,7 +16,7 @@ function Game2D() {
       <div
         className='absolute right-4 bottom-4 border-2 border-solid border-blue-500 p-4 rounded-xl'
         onClick={() => {
-          convertToGraph();
+          comparePaths();
         }}
       >
         Start
