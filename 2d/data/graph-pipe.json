@@ -3,29 +3,29 @@
     "a": {
       "id": "a",
       "format": "straight",
-      "offsetX": -200.00,
-      "offsetY": -98.00,
+      "offsetX": -40.00,
+      "offsetY": 12.00,
       "rotation": 0
     },
     "b": {
       "id": "b",
       "format": "y",
-      "offsetX": 0.00,
-      "offsetY": -45.00,
+      "offsetX": 160.00,
+      "offsetY": 65.00,
       "rotation": 0
     },
     "c": {
       "id": "c",
       "format": "l-flipped",
-      "offsetX": 0.00,
-      "offsetY": 155.00,
+      "offsetX": 160.00,
+      "offsetY": 265.00,
       "rotation": 180
     },
     "d": {
       "id": "d",
       "format": "l-y",
-      "offsetX": 200.00,
-      "offsetY": 54.00,
+      "offsetX": 360.00,
+      "offsetY": 164.00,
       "rotation": 0
     }
   },
@@ -35,8 +35,8 @@
       "from": "a",
       "to": "b",
       "weight": 15.0,
-      "offsetX": -100.00,
-      "offsetY": -100.00,
+      "offsetX": 60.00,
+      "offsetY": 10.00,
       "rotation": 0
     },
     "2": {
@@ -44,8 +44,8 @@
       "from": "b",
       "to": "c",
       "weight": 9.0,
-      "offsetX": 36.00,
-      "offsetY": 55.00,
+      "offsetX": 196.00,
+      "offsetY": 165.00,
       "rotation": 90
     },
     "3": {
@@ -53,8 +53,8 @@
       "from": "b",
       "to": "d",
       "weight": 17.0,
-      "offsetX": 100.00,
-      "offsetY": -100.00,
+      "offsetX": 260.00,
+      "offsetY": 10.00,
       "rotation": 0
     },
     "4": {
@@ -62,8 +62,8 @@
       "from": "c",
       "to": "d",
       "weight": 12.0,
-      "offsetX": 100.00,
-      "offsetY": 150.00,
+      "offsetX": 260.00,
+      "offsetY": 260.00,
       "rotation": 0
     }
   }

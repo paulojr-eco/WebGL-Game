@@ -1,0 +1,15 @@
+.swiper-button-next {
+  color: white;
+}
+
+.swiper-button-prev {
+  color: white;
+}
+
+.swiper-pagination-bullet {
+  background-color: #ffffff;
+}
+
+.swiper-slide {
+  display: flex;
+}

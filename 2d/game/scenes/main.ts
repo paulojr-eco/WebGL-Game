@@ -42,18 +42,26 @@ export class MainScene extends Scene {
     this.load.image('pipe-connect', 'images/pipes/connect.png');
     this.load.image('lever-off', 'images/pipes/lever-off.png');
     this.load.image('lever-on', 'images/pipes/lever-on.png');
+    this.load.image('filled-tank', 'images/water-tank-full.png');
+    this.load.image('empty-tank', 'images/water-tank-empty.png');
+    this.load.image('jail', 'images/background-jail.png');
   }
 
   init() {
     this.scale.on('resize', this.resize, this);
     this.camera = this.cameras.main;
-    this.camera.setBackgroundColor('#24252A');
+    this.camera.setBackgroundColor('#34588F');
   }
 
   create() {
     this.rt = this.add.renderTexture(0, 0, 800, 600).setOrigin(0, 0);
 
     const { centerX, centerY } = this.camera;
+
+    this.add.image(centerX - 500, centerY - 300, 'filled-tank').setScale(0.5);
+    this.add.image(centerX - 380, centerY - 270, 'pipe-straight').setScale(0.05);
+    this.add.image(centerX - 210, centerY - 90, 'jail').setScale(0.3);
+    this.add.image(centerX + 480, centerY + 100, 'empty-tank').setScale(0.5);
 
     for (const index in this.graph.nodes) {
       const node = this.graph.nodes[index];

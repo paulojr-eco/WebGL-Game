@@ -1,22 +1,27 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
+import type { Metadata } from 'next';
+import { Nunito } from 'next/font/google';
+import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] })
+const nunito = Nunito({
+  weight: ['400', '700'],
+  subsets: ['latin'] 
+});
 
 export const metadata: Metadata = {
   title: 'WebGL Game',
   description: 'Game created by Paulo Paiva',
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html>
-      <body className='w-screen h-screen'>{children}</body>
+      <body className={`${nunito.className} font-sans w-screen h-screen bg-background`}>
+        {children}
+      </body>
     </html>
-  )
+  );
 }

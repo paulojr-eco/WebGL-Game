@@ -17,8 +17,18 @@ function comparePaths() {
     }
   }
 
-  if(dijkstraMaxPath(originalGraph, 'a', 'd') > dijkstraMaxPath(gameGraph, 'a', 'd')) {
-    window.alert('Esse ainda não é o caminho máximo para a água passar! Tente novamente.')
+  if (Object.keys(gameGraph.edges).length === Object.keys(originalGraph.edges).length) {
+    window.alert('Todas as válvulas não podem estar conectadas! É preciso definir somente um caminho para a água passar.');
+    return;
+  }
+
+  if (
+    dijkstraMaxPath(originalGraph, 'a', 'd') >
+    dijkstraMaxPath(gameGraph, 'a', 'd')
+  ) {
+    window.alert(
+      'Esse ainda não é o caminho máximo para a água passar! Tente novamente.'
+    );
   } else {
     window.alert('Parabéns! Você concluiu o desafio.');
   }
