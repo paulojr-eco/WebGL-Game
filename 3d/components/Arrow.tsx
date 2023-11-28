@@ -1,14 +1,16 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
+import { Object3D, Object3DEventMap } from 'three';
 
 const Arrow = () => {
   const modelRef = useRef();
   const model = useGLTF('./models/Arrow.gltf');
   let isUp = true;
 
-  model.scene.traverse((object) => {
-    if (object.isMesh) {
+  model.scene.traverse((object: Object3D<Object3DEventMap>) => {
+    const isMesh: boolean = (object as any).isMesh;
+    if (isMesh) {
       object.castShadow = true;
     }
   });

@@ -109,8 +109,9 @@ const Player = (props: any) => {
     }
   });
 
-  model.scene.traverse((object) => {
-    if (object.isMesh) {
+  model.scene.traverse((object: THREE.Object3D<THREE.Object3DEventMap>) => {
+    const isMesh: boolean = (object as any).isMesh;
+    if (isMesh) {
       object.castShadow = true;
     }
   });

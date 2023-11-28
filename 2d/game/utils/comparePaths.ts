@@ -1,3 +1,5 @@
+'use client';
+
 import { ResultsUIProps } from '@/components/ResultsUI/ResultsUI';
 import { mainScene } from '..';
 import graphData from '../../data/graph-pipe.json';
@@ -50,7 +52,9 @@ function comparePaths(
       message: 'Parabéns! Você concluiu o desafio.',
       type: 'SUCCESS',
       buttonFunction: () => {
-        window.location.reload();
+        if (typeof window !== 'undefined') {
+          window.location.reload();
+        }
       },
     };
   }

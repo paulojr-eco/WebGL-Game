@@ -8,6 +8,11 @@ export class StopWatch extends Scene {
   private stopwatchFontSize: number = 28;
   public eventEmitter = new Phaser.Events.EventEmitter();
   private isGameConcluded: boolean = false;
+
+  constructor() {
+    super({ key: 'StopWatch' });
+  }
+
   preload() {
     this.load.image('stopwatch-bg', 'images/stopwatch-bg.png');
     this.load.image('stopwatch-pointer', 'images/stopwatch-pointer.png');

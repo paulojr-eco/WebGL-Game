@@ -19,7 +19,9 @@ function Game2D() {
 
   useEffect(() => {
     if (shouldReload) {
-      window.location.reload();
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      }
     }
   }, [shouldReload]);
 
@@ -34,7 +36,9 @@ function Game2D() {
       message: 'Infelizmente seu tempo acabou! Tente mais uma vez.',
       type: 'FAILURE',
       buttonFunction: () => {
-        window.location.reload();
+        if (typeof window !== "undefined") {
+          window.location.reload();
+        }
       },
     });
     setOpenUI(true);

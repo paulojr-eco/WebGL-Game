@@ -33,6 +33,10 @@ export class MainScene extends Scene {
   private graph!: Graph;
   public stopwatch: StopWatch = new StopWatch();
 
+  constructor() {
+    super({ key: "MainScene" });
+  }
+
   preload() {
     this.graph = graphData as unknown as Graph;
     for (const index in this.graph.nodes) {
