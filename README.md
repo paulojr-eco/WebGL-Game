@@ -104,8 +104,8 @@ Por fim, estando no diretório do projeto, vamos instalar as dependências neces
 
 # :round_pushpin: Rotas
 
-- / => Página inicial para visualização da história background e contexto do game
-- /game => Página com a interface de instrução ao jogador, contendo indicações para começar o jogo, instruções e redirecionamento para a página "Sobre"
-- /game/instructions => Página de instruções sobre como jogar
-- /game/about => Página com mais informações sobre o autor e tecnologias utilizadas para a construção do app
-- /play => Página do jogo em si, em que o usuário pode interagir com os objetos para concluir o desafio
+- `/` => Página inicial para visualização da história background e contexto do game
+- `/game` => Página com a interface de instrução ao jogador, contendo indicações para começar o jogo, instruções e redirecionamento para a página "Sobre"
+- `/game/instructions` => Página de instruções sobre como jogar
+- `/game/about` => Página com mais informações sobre o autor e tecnologias utilizadas para a construção do app
+- `/play` => Página do jogo em si, em que o usuário pode interagir com os objetos para concluir o desafio
