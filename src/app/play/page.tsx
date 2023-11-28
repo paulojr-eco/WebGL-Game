@@ -19,7 +19,7 @@ function Game2D() {
 
   useEffect(() => {
     if (shouldReload) {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         window.location.reload();
       }
     }
@@ -36,7 +36,7 @@ function Game2D() {
       message: 'Infelizmente seu tempo acabou! Tente mais uma vez.',
       type: 'FAILURE',
       buttonFunction: () => {
-        if (typeof window !== "undefined") {
+        if (typeof window !== 'undefined') {
           window.location.reload();
         }
       },
@@ -55,7 +55,15 @@ function Game2D() {
         className='absolute right-4 bottom-4 border-2 border-solid p-4 rounded-full bg-greenButton font-bold cursor-pointer hover:bg-greenDark active:bg-greenPressed shadow-2xl'
         onClick={() => {
           setOpenUI(!openUI);
-          setResultGame(comparePaths(setOpenUI));
+          const result = comparePaths(setOpenUI);
+          if (result.buttonFunction === null) {
+            result.buttonFunction = () => {
+              if (typeof window !== 'undefined') {
+                window.location.reload();
+              }
+            };
+          }
+          setResultGame(result);
         }}
       >
         GO

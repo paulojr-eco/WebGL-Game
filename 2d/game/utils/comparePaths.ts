@@ -51,11 +51,7 @@ function comparePaths(
     return {
       message: 'Parabéns! Você concluiu o desafio.',
       type: 'SUCCESS',
-      buttonFunction: () => {
-        if (typeof window !== 'undefined') {
-          window.location.reload();
-        }
-      },
+      buttonFunction: null,
     };
   }
 }

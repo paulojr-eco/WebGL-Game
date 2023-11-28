@@ -4,7 +4,7 @@ import { MouseEventHandler } from 'react';
 export interface ResultsUIProps {
   message: string;
   type: 'SUCCESS' | 'FAILURE' | 'ERROR';
-  buttonFunction: MouseEventHandler<HTMLButtonElement>;
+  buttonFunction: MouseEventHandler<HTMLButtonElement> | null;
 }
 
 const ResultsUI = (props: ResultsUIProps) => {
@@ -58,7 +58,7 @@ const ResultsUI = (props: ResultsUIProps) => {
                 ? 'bg-orange-500'
                 : 'bg-red-500'
             } p-4 rounded-xl text-white font-bold`}
-            onClick={props.buttonFunction}
+            onClick={props.buttonFunction!}
           >
             {props.type === 'SUCCESS'
               ? 'Jogar Novamente'
