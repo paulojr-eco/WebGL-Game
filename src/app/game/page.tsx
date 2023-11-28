@@ -10,9 +10,9 @@ function GameInterface() {
         height={300}
         alt='game logo'
       />
-      <Button name={'Jogar'} link={'/play'}/>
-      <Button name={'Instruções'} link={'/game/instructions'}/>
-      <Button name={'Sobre'} link={'/game/about'}/>
+      <Button name={'Jogar'} link={'play'}/>
+      <Button name={'Instruções'} link={'game/instructions'}/>
+      <Button name={'Sobre'} link={'game/about'}/>
     </div>
   );
 }

@@ -1,26 +1,68 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { useGame } from '../../../2d/hooks';
-import gameConfig from '../../../2d/game';
+import gameConfig, { mainScene } from '../../../2d/game';
 import comparePaths from '../../../2d/game/utils/comparePaths';
+import ResultsUI, { ResultsUIProps } from '@/components/ResultsUI/ResultsUI';
 
 function Game2D() {
+  const [shouldReload, setShouldReload] = useState(false);
+  useEffect(() => {
+    const hasVisitedBefore = localStorage.getItem('hasVisitedBefore');
+    if (hasVisitedBefore === 'false') {
+      setShouldReload(true);
+      localStorage.setItem('hasVisitedBefore', 'true');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (shouldReload) {
+      window.location.reload();
+    }
+  }, [shouldReload]);
+
   const parentEl = useRef<HTMLDivElement>(null);
+  const [openUI, setOpenUI] = useState(false);
+  const [resultGame, setResultGame] = useState<ResultsUIProps>();
   useGame(gameConfig, parentEl);
+
+  const eventEmitter = mainScene.stopwatch.eventEmitter;
+  eventEmitter.on('stopwatchReachedZero', () => {
+    setResultGame({
+      message: 'Infelizmente seu tempo acabou! Tente mais uma vez.',
+      type: 'FAILURE',
+      buttonFunction: () => {
+        window.location.reload();
+      },
+    });
+    setOpenUI(true);
+  });
+
+  if (resultGame?.type === 'SUCCESS') {
+    eventEmitter.emit('gameSuccess');
+  }
 
   return (
     <div className='container flex flex-col items-center flex-1 justify-center'>
       <div ref={parentEl} className='game-content' />
-      <div
-        className='absolute right-4 bottom-4 border-2 border-solid border-blue-500 p-4 rounded-xl'
+      <button
+        className='absolute right-4 bottom-4 border-2 border-solid p-4 rounded-full bg-greenButton font-bold cursor-pointer hover:bg-greenDark active:bg-greenPressed shadow-2xl'
         onClick={() => {
-          comparePaths();
+          setOpenUI(!openUI);
+          setResultGame(comparePaths(setOpenUI));
         }}
       >
-        Start
-      </div>
+        GO
+      </button>
+      {openUI && (
+        <ResultsUI
+          message={resultGame!.message}
+          type={resultGame!.type}
+          buttonFunction={resultGame!.buttonFunction}
+        />
+      )}
     </div>
   );
 }

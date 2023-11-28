@@ -1,3 +1,4 @@
+import { ResultsUIProps } from '@/components/ResultsUI/ResultsUI';
 import { mainScene } from '..';
 import graphData from '../../data/graph-pipe.json';
 import { Graph, dijkstraMaxPath } from './dijkstra';
@@ -6,7 +7,9 @@ function deepCopy(obj: any) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-function comparePaths() {
+function comparePaths(
+  setOpenUI: React.Dispatch<React.SetStateAction<boolean>>
+): ResultsUIProps {
   const originalGraph = graphData as Graph;
   const gameGraph = deepCopy(originalGraph);
   const levers = mainScene.getLevers();
@@ -17,20 +20,39 @@ function comparePaths() {
     }
   }
 
-  if (Object.keys(gameGraph.edges).length === Object.keys(originalGraph.edges).length) {
-    window.alert('Todas as válvulas não podem estar conectadas! É preciso definir somente um caminho para a água passar.');
-    return;
+  if (
+    Object.keys(gameGraph.edges).length ===
+    Object.keys(originalGraph.edges).length
+  ) {
+    return {
+      message: 'É preciso definir somente um caminho para a água passar.',
+      type: 'ERROR',
+      buttonFunction: () => {
+        setOpenUI(false);
+      },
+    };
   }
 
   if (
     dijkstraMaxPath(originalGraph, 'a', 'd') >
     dijkstraMaxPath(gameGraph, 'a', 'd')
   ) {
-    window.alert(
-      'Esse ainda não é o caminho máximo para a água passar! Tente novamente.'
-    );
+    return {
+      message:
+        'Esse ainda não é o caminho máximo para a água passar! Tente novamente.',
+      type: 'ERROR',
+      buttonFunction: () => {
+        setOpenUI(false);
+      },
+    };
   } else {
-    window.alert('Parabéns! Você concluiu o desafio.');
+    return {
+      message: 'Parabéns! Você concluiu o desafio.',
+      type: 'SUCCESS',
+      buttonFunction: () => {
+        window.location.reload();
+      },
+    };
   }
 }
 

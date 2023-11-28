@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -15,11 +15,16 @@ const config: Config = {
       },
       colors: {
         green: '#00CA9A',
+        lightGreen: '#00B23D',
         blue: '#006ACB',
         background: '#34588F',
+        greenButton: '#00ab66',
+        greenDark: '#0e7b4f',
+        greenPressed: '#0A5939',
+        uiBackground: '#ECE1C4',
       },
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;

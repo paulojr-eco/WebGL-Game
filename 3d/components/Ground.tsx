@@ -1,20 +1,24 @@
-import { useGLTF } from '@react-three/drei';
+import { Box, useGLTF } from '@react-three/drei';
+import { RigidBody } from '@react-three/rapier';
 
 const Ground = () => {
-  const ground = useGLTF('./models/Ground.gltf');
-
   return (
-    <mesh position={[0, -1, 0]} receiveShadow>
-      <primitive object={ground.scene} />
-      <mesh rotation={[-0.5 * Math.PI, 0, 0]} receiveShadow>
-        <planeBufferGeometry args={[200, 200, 1, 1]} />
-        <shadowMaterial transparent opacity={0.75} />
+    <>
+      <RigidBody type='fixed'>
+        <mesh
+          position={[0, 0, 0]}
+          rotation={[-0.5 * Math.PI, 0, 0]}
+          receiveShadow
+        >
+          <planeBufferGeometry args={[1000, 1000, 1, 1]} />
+          <shadowMaterial transparent opacity={0.2} />
+        </mesh>
+      </RigidBody>
+      <Box position={[0, -1, 0]} args={[1000, 1, 1000]}>
         <meshStandardMaterial color={'#458745'} />
-      </mesh>
-    </mesh>
+      </Box>
+    </>
   );
 };
-
-useGLTF.preload('./models/Ground.gltf');
 
 export default Ground;

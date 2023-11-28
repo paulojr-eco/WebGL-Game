@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 
 interface ButtonProps {
@@ -8,7 +10,12 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
   return (
     <Link href={`${props.link}`}>
-      <button className='w-48 h-16 bg-gradient-to-b from-green to-blue rounded-2xl font-bold text-2xl'>
+      <button
+        className='w-48 h-16 bg-gradient-to-b from-green to-blue rounded-2xl font-bold text-2xl'
+        onClick={() => {
+          localStorage.setItem('hasVisitedBefore', 'false');
+        }}
+      >
         {props.name}
       </button>
     </Link>

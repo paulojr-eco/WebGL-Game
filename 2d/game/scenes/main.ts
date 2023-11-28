@@ -1,5 +1,6 @@
 import { Scene, GameObjects, Cameras } from 'phaser';
 import graphData from '../../data/graph-pipe.json';
+import { StopWatch } from './stopwatch';
 
 type node = {
   format: string;
@@ -30,6 +31,7 @@ export class MainScene extends Scene {
   private edges: GameObjects.Image[] = [];
   private levers: GameObjects.Image[] = [];
   private graph!: Graph;
+  public stopwatch: StopWatch = new StopWatch();
 
   preload() {
     this.graph = graphData as unknown as Graph;
@@ -45,6 +47,13 @@ export class MainScene extends Scene {
     this.load.image('filled-tank', 'images/water-tank-full.png');
     this.load.image('empty-tank', 'images/water-tank-empty.png');
     this.load.image('jail', 'images/background-jail.png');
+    this.load.spritesheet('water-jet', 'images/water-jet.png', {
+      frameWidth: 480,
+      frameHeight: 270,
+    });
+    this.load.image('char-crying', 'images/luigi/crying.png');
+    this.load.image('char-fear', 'images/luigi/fear.png');
+    this.load.image('char-happy', 'images/luigi/happy.png');
   }
 
   init() {
@@ -59,9 +68,28 @@ export class MainScene extends Scene {
     const { centerX, centerY } = this.camera;
 
     this.add.image(centerX - 500, centerY - 300, 'filled-tank').setScale(0.5);
-    this.add.image(centerX - 380, centerY - 270, 'pipe-straight').setScale(0.05);
+    this.add
+      .image(centerX - 380, centerY - 270, 'pipe-straight')
+      .setScale(0.05);
     this.add.image(centerX - 210, centerY - 90, 'jail').setScale(0.3);
+    this.add.image(centerX - 200, centerY - 32, 'char-fear').setScale(0.4);
     this.add.image(centerX + 480, centerY + 100, 'empty-tank').setScale(0.5);
+    this.scene.add('stopwatch', this.stopwatch, true);
+
+    const waterJet = this.add
+      .sprite(centerX - 160, centerY - 235, 'water-jet')
+      .setScale(0.7);
+    this.anims.create({
+      key: 'water-jet-animate',
+      frames: this.anims.generateFrameNumbers('water-jet', {
+        start: 0,
+        end: 7,
+      }),
+      frameRate: 10,
+      repeat: -1,
+    });
+
+    waterJet.play('water-jet-animate');
 
     for (const index in this.graph.nodes) {
       const node = this.graph.nodes[index];
