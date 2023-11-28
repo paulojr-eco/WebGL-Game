@@ -2,12 +2,12 @@
 
 import { Stats } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import Ground from '../../../3d/components/Ground';
-import Sky from '../../../3d/components/Sky';
-import Player from '../../../3d/components/Player';
+import Ground from '../../3d/components/Ground';
+import Sky from '../../3d/components/Sky';
+import Player from '../../3d/components/Player';
 import { Physics } from '@react-three/rapier';
-import Pipe from '../../../3d/components/Pipe';
-import Arrow from '../../../3d/components/Arrow';
+import Pipe from '../../3d/components/Pipe';
+import Arrow from '../../3d/components/Arrow';
 import { Suspense, useState } from 'react';
 import Image from 'next/image';
 
